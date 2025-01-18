@@ -9,7 +9,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import Input from "../components/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { getRoom } from "../actions/roomActions";
-import { getUser } from "../actions/ authActions";
+import { getUser } from "../actions/authActions";
 
 import { createRoom } from "../actions/roomActions";
 import { toast } from "react-toastify";

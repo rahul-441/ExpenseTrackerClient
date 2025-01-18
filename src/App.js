@@ -6,7 +6,7 @@ import HomeLayout from "./layout/HomeLayout";
 import Expense from "./pages/Expense";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { getUser } from "./actions/ authActions";
+import { getUser } from "./actions/authActions";
 import ViewProfile from "./pages/ViewProfile";
 import NotFound from "./pages/NotFound";
 import { getCookie } from "./utils/refreshToken";

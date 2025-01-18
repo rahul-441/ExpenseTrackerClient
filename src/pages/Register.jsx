@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Input from "../components/Input";
 import PasswordInput from "../components/PasswordInput";
-import { register } from "../actions/ authActions"; // Update the import path
+import { register } from "../actions/authActions"; // Update the import path
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";

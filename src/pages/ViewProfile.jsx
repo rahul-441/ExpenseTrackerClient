@@ -8,7 +8,7 @@ import {
   getUser,
   logout,
   resetPassword,
-} from "../actions/ authActions";
+} from "../actions/authActions";
 import PasswordInput from "../components/PasswordInput";
 import Button from "../components/Button";
 import Input from "../components/Input";

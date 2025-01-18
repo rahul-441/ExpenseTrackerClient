@@ -3,7 +3,7 @@ import React, { Fragment} from "react";
 import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useDispatch} from "react-redux";
-import { logout } from "../actions/ authActions";
+import { logout } from "../actions/authActions";
 
 function Header({ user }) {
   const dispatch = useDispatch();

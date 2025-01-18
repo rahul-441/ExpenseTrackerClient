@@ -3,7 +3,7 @@ import Input from "../components/Input";
 import PasswordInput from "../components/PasswordInput";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
-import { login } from "../actions/ authActions";
+import { login } from "../actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
