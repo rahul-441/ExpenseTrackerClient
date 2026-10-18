@@ -34,7 +34,13 @@ function App() {
   }, [dispatch, refreshToken]);
 
   if (loading) {
-    return null;
+    return (
+      <div className="text-center p-10">
+        <div role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </div>
+    );
   }
 
   return (

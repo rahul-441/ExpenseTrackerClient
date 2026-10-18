@@ -117,7 +117,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         ...payload,
         loading: false,
-        error: payload.data,
+        error: payload,
       };
     case CLEAR_SUCCESS:
       return {

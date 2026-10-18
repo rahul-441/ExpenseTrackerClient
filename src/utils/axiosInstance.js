@@ -1,7 +1,9 @@
 import axios from "axios";
+import { API_BASE_URL } from "./api";
 import { getToken } from "./refreshToken";
+
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3030/api/v1",
+  baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -9,15 +11,13 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    let refreshToken = await getToken();
-    if (refreshToken) {
-      config.headers.Authorization = `Bearer ${refreshToken}`;
+    const accessToken = await getToken();
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
 export default axiosInstance;

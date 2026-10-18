@@ -1,4 +1,5 @@
 import axiosInstance from "../utils/axiosInstance";
+import { getErrorMessage } from "../utils/api";
 import {
   GET_ROOMS_SUCCESS,
   GET_ROOMS_FAIL,
@@ -25,14 +26,14 @@ export const getRoom = (room_id) => async (dispatch) => {
       const res = await axiosInstance.get(`/rooms/get-room?room_id=${room_id}`);
       dispatch({ type: GET_ROOM_SUCCESS, payload: res.data.result });
     } catch (err) {
-      dispatch({ type: GET_ROOM_FAIL, payload: err.response.data.message });
+      dispatch({ type: GET_ROOM_FAIL, payload: getErrorMessage(err, "Unable to fetch group") });
     }
   } else {
     try {
       const res = await axiosInstance.get(`/rooms/get-room`);
       dispatch({ type: GET_ROOMS_SUCCESS, payload: res.data.result });
     } catch (err) {
-      dispatch({ type: GET_ROOMS_FAIL, payload: err.response.data.message });
+      dispatch({ type: GET_ROOMS_FAIL, payload: getErrorMessage(err, "Unable to fetch groups") });
     }
   }
 };
@@ -42,7 +43,7 @@ export const createRoom = (formData) => async (dispatch) => {
     const res = await axiosInstance.post("/rooms/create", formData);
     dispatch({ type: CREATE_ROOM_SUCCESS, payload: res.data });
   } catch (err) {
-    dispatch({ type: CREATE_ROOM_FAIL, payload: err.response.data.message });
+    dispatch({ type: CREATE_ROOM_FAIL, payload: getErrorMessage(err, "Unable to create group") });
   }
 };
 
@@ -51,7 +52,7 @@ export const addRoomMember = (formData) => async (dispatch) => {
     const res = await axiosInstance.post("/rooms/add-member", formData);
     dispatch({ type: ADD_ROOM_MEMBER_SUCCESS, payload: res.data });
   } catch (err) {
-    dispatch({ type: ADD_ROOM_MEMBER_FAIL, payload: err.response.data.message });
+    dispatch({ type: ADD_ROOM_MEMBER_FAIL, payload: getErrorMessage(err, "Unable to add member") });
   }
 };
 
@@ -62,7 +63,7 @@ export const getAllExpenseByRoom = (room_id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: GET_ALL_EXPENSE_ROOM_FAIL,
-      payload: err.response.data.message,
+      payload: getErrorMessage(err, "Unable to fetch group balances"),
     });
   }
 };
@@ -74,7 +75,7 @@ export const getAllRoomMember = (room_id) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: GET_ALL_ROOM_MEMBERS_FAIL,
-      payload: err.response.data.message,
+      payload: getErrorMessage(err, "Unable to fetch members"),
     });
   }
 };
@@ -86,7 +87,7 @@ export const leaveRoom = (room_id) => async (dispatch) => {
     dispatch({ type: LEFT_ROOM_SUCCESS, payload: res.data.message });
   } catch (err) {
     console.log(err);
-    dispatch({ type: LEFT_ROOM_FAIL, payload: err.response.data.message });
+    dispatch({ type: LEFT_ROOM_FAIL, payload: getErrorMessage(err, "Unable to leave group") });
   }
 };
 
@@ -96,7 +97,7 @@ export const deleteRoom = (room_id) => async (dispatch) => {
     const res = await axiosInstance.delete(`/rooms/delete_room/${room_id}`);
     dispatch({ type: DELETE_ROOM_SUCCESS, payload: res.data.message });
   } catch (err) {
-    dispatch({ type: DELETE_ROOM_FAIL, payload: err.response.data.message });
+    dispatch({ type: DELETE_ROOM_FAIL, payload: getErrorMessage(err, "Unable to delete group") });
   }
 };
 
@@ -105,6 +106,6 @@ export const getNetProfit = () => async (dispatch) => {
     const res = await axiosInstance.get(`/rooms/netTotal`);
     dispatch({ type: GET_NET_TOTAL_SUCCESS, payload: res.data.data});
   } catch (err) {
-    dispatch({ type:GET_NET_TOTAL_FAIL, payload: err.response.data.message });
+    dispatch({ type:GET_NET_TOTAL_FAIL, payload: getErrorMessage(err, "Unable to fetch totals") });
   }
 };

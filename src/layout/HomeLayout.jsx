@@ -41,15 +41,15 @@ function HomeLayout() {
   }, [dispatch]);
 
   useEffect(() => {
-    const validGroups = Groups?.filter((group) => group.room_id === Number(id));
-
-    if (validGroups.length === 0) {
-      // Redirect to /404 if no valid groups found
-      navigate("/");
-    } else {
-      // If valid groups found, you can proceed with your logic here
+    if (!id || !Groups || Groups.length === 0) {
+      return;
     }
-  }, [id, navigate, Groups]); // Include history in dependency array
+
+    const validGroups = Groups.filter((group) => group.room_id === Number(id));
+    if (validGroups.length === 0) {
+      navigate("/");
+    }
+  }, [id, navigate, Groups]);
 
   const handleChange = (e) => {
     setCreateRoomInput({ ...createRoomInput, [e.target.name]: e.target.value });
@@ -162,7 +162,7 @@ function HomeLayout() {
         <section className="h-screen xl:w-[350px] lg:w-[300px] w-[250px] border-l border-border fixed right-0 top-0 pt-[60px]">
           <div className="container h-full p-5">
             {pathname.includes("/group-expense") ? (
-              <TotalAmount room_id={id} username={user.message.username} />
+              <TotalAmount room_id={id} username={user?.message?.username} />
             ) : null}
           </div>
         </section>

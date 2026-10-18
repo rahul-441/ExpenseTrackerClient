@@ -9,6 +9,6 @@ export const getAllTransactions = (expense_id) => async (dispatch) => {
         const res = await axiosInstance.get(`/transactions/expense/${expense_id}`);
         dispatch({ type: GET_ALL_TRANSACTION_SUCCESS, payload: res.data});
     } catch (err) {
-        dispatch({ type: GET_ALL_TRANSACTION_FAIL, payload: err.response.data.result });
+        dispatch({ type: GET_ALL_TRANSACTION_FAIL, payload: err.response?.data?.message || "Unable to fetch transactions" });
     }
 };
